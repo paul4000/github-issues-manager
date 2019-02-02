@@ -92,5 +92,5 @@ ENV/
 db.sqlite3
 
 # PyCharm
-.idea/
+.idea/*
 workspace.xml
