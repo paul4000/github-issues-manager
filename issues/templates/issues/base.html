@@ -1,0 +1,46 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Github Issues Manager</title>
+    <link rel="stylesheet" href="{% static '/issues/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '/issues/style.css' %}">
+    <script type="text/javascript" src="{% static '/issues/bootstrap.min.js' %}"></script>
+</head>
+<body>
+<div class="navbar navbar-default navbar-static-top
+        {% block nav-style %}{% endblock %}">
+    <div class="container p-none">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle"
+                    data-toggle="collapse"
+                    data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Github Issues Manager</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
+                <li>
+                    <button class="btn btn-link navbar-btn navbar-link"><a href="/logout">Logout</a></button>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="content container">
+    <div class="row">
+        <div class="col-md-8">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
