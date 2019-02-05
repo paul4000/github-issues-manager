@@ -6,7 +6,9 @@
     <title>Github Issues Manager</title>
     <link rel="stylesheet" href="{% static '/issues/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static '/issues/style.css' %}">
+    <link rel="stylesheet" href="{% static '/issues/custom_styles.css' %}">
     <script type="text/javascript" src="{% static '/issues/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static '/issues/jquery-2.1.1.js' %}"></script>
 </head>
 <body>
 <div class="navbar navbar-default navbar-static-top
@@ -25,6 +27,13 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
+                <li>
+                    <a class="page-scroll">Hello {{ user.username }}</a>
+                </li>
+
+                <li>
+                    <button class="btn btn-link navbar-btn navbar-link"><a href="{% url 'issues:repositories' %}">Repositories</a></button>
+                </li>
                 <li>
                     <button class="btn btn-link navbar-btn navbar-link"><a href="/logout">Logout</a></button>
                 </li>

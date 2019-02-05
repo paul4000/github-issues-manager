@@ -1,0 +1,6 @@
+body {
+    background: white url("img/wallpaper_2.jpg") no-repeat;
+    background-size:100%;
+}
+
+.box-content.box-1 {text-align: center; width:100%; }

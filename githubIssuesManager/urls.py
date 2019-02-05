@@ -22,9 +22,10 @@ from issues import views as issues_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('issues/', include('issues.urls')),
+    path('issues/', include(('issues.urls', 'issues'), namespace='issues')),
     url(r'^login/$', auth_views.LoginView.as_view(), name='login'),
     url(r'^logout/$', issues_views.logout, name='logout'),
     url(r'^oauth/', include('social_django.urls', namespace='social')),
-    url(r'^homepage/', issues_views.homepage, name='homepage')
+    url(r'^homepage/', issues_views.homepage, name='homepage'),
+
 ]
