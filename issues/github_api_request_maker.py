@@ -13,3 +13,9 @@ class GithubRequestsMaker:
         response = requests.get(repos_endpoint, headers=self.headers)
 
         return response
+
+    def get_issues(self, owner, repo):
+        issues_endpoint = self.github_endpoint + ('/repos/%s/%s/issues' % (owner, repo))
+        response = requests.get(issues_endpoint, headers=self.headers)
+
+        return response

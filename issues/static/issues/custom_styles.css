@@ -1,6 +1,24 @@
 body {
-    background: white url("img/wallpaper_2.jpg") no-repeat;
+    background-image: url("img/wallpaper_2.jpg");
+    background-repeat:no-repeat;
     background-size:100%;
+    background-attachment: fixed;
+    position:static;
 }
 
-.box-content.box-1 {text-align: center; width:100%; }
+#page-content.index-page {background: #F0F0F0; opacity: 0.9;}
+.index-page .repository-list .heading {margin-bottom: 30px; text-align: center;}
+.index-page .repository-list  h3 {margin-bottom:15px;font-size: 25px;}
+.index-page .repository-list .heading h2 {font-size: 30px;letter-spacing:2px;}
+.index-page .repository-list { text-align: center; }
+.index-page .repository-list .boxes-list {  list-style-type: none;}
+.boxes-list .issue h5 {font-size: 17px;}
+.boxes-list .issue p {font-size: 14px;}
+
+.btn-7 {background: #333;border: 2px solid transparent;margin:10px 0 10px 0; color:#FFFFF0;}
+.btn-7:hover {color:#333;border:2px solid #333;background:transparent;}
+
+.btn-6 {background: #FF0000;border: 2px solid transparent;margin:10px 0 10px 0; color:#FFFFF0;}
+.btn-6:hover {color:#333;border:2px solid #333;background:transparent;}
+
+.messages {  list-style-type: none;}
