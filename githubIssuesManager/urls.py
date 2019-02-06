@@ -27,5 +27,4 @@ urlpatterns = [
     url(r'^logout/$', issues_views.logout, name='logout'),
     url(r'^oauth/', include('social_django.urls', namespace='social')),
     url(r'^homepage/', issues_views.homepage, name='homepage'),
-
 ]

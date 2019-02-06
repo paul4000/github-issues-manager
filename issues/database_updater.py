@@ -2,6 +2,7 @@ from issues.models import Repository, Issue
 
 
 def create_repository(repo):
+
     Repository.objects.create(
         github_id=repo['id'],
         github_name=repo["name"],
@@ -47,7 +48,7 @@ def update_issue(issue, repo):
     assignee_login = issue.get('assignee', {}).get('login')
     assignee_url = issue.get('assignee', {}).get('html_url')
 
-    issue_old = Issue.objects.get(github_number=issue["number"])
+    issue_old = Issue.objects.get(github_number=issue["number"], repository=repo)
     issue_old.github_state=issue["state"]
     issue_old.github_title=issue["title"]
     issue_old.github_body=issue["body"]

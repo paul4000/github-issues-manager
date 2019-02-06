@@ -25,7 +25,7 @@
             </ul>
             {% endif %}
             <ul class="boxes-list">
-                {% for repo in repository_list %}
+                {% for repo in repository_list|dictsortreversed:"open_issues_count" %}
                 <li>
                     <div class="row">
                         <div class="col-md-8">

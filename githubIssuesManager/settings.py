@@ -132,4 +132,9 @@ LOGIN_REDIRECT_URL = 'homepage'
 SOCIAL_AUTH_GITHUB_KEY = '66a124db75371ee74d46'
 SOCIAL_AUTH_GITHUB_SECRET = '5197d933858f570fc800feac4bb8b2cc7fa18366'
 
+SOCIAL_AUTH_GITHUB_SCOPE = [
+    'user',
+    'repo',
+    'admin:repo_hook',
+]
 

@@ -1,7 +1,14 @@
+from datetime import datetime
+
+import pytz
 from django.db import models
 
 
 class Repository(models.Model):
+    """
+    Model representing Github API Repository object.
+    """
+
     github_id = models.IntegerField()
     github_name = models.TextField()
     github_full_name = models.TextField()
@@ -13,6 +20,9 @@ class Repository(models.Model):
 
 
 class Issue(models.Model):
+    """
+    Model representing Github API Issue object, with added custom for application fields: priority and deadline.
+    """
 
     repository = models.ForeignKey(Repository, on_delete=models.CASCADE)
 
@@ -39,5 +49,11 @@ class Issue(models.Model):
     github_assignee_login = models.TextField()
     github_assignee_url_profile = models.TextField()
 
+    def is_out_of_date(self):
+
+        utc = pytz.UTC
+
+        return self.deadline and (utc.localize(datetime.now()) > self.deadline)
+
     def __str__(self):
-        return self.github_number + ' ' + self.github_title
+        return str(self.github_number) + ' ' + self.github_title

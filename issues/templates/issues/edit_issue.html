@@ -1,0 +1,16 @@
+{% extends "issues/base.html" %}
+
+{% block title %}Edit issue{% endblock %}
+
+{% block content %}
+
+<div class="content jumbotron">
+    <form method="post" class="mb-4" novalidate>
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" class="btn btn-success">Save changes</button>
+        <a href="{% url 'issues:repositories_issues' issue.repository.pk %}" class="btn btn-2" role="button">Cancel</a>
+    </form>
+</div>
+{% endblock %}

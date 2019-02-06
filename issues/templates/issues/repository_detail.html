@@ -25,48 +25,52 @@
             </ul>
             {% endif %}
             <ul class="boxes-list">
-                {% for issue in repository.issue_set.all %}
+                {% for issue in repository.issue_set.all|dictsort:"priority" %}
                 <li>
-                    <div class="row issue">
-                        <div class="col-md-6">
-                            <h5>
-                                {% if 'bug' in issue.label %}
-                                <i class="fas fa-bug"></i>
-                                {% endif %}
-                                {% if 'enhancement' in issue.label %}
-                                <i class="fas fa-arrow-up"></i>
-                                {% endif %}
-                                {% if 'help wanted' in issue.label %}
-                                <i class="fas fa-question"></i>
-                                {% endif %}
-                                {{ issue.github_title}}
-                            </h5>
-                            <p class="issue-body">
-                                {{ issue.github_body}}
-                            </p>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div>Priority: <b>{{ issue.priority }}</b></div>
-                            <div>Last updated: {{ issue.github_updated_at }}</div>
-                            <div>Assignee: {{ issue.github_updated_at }}
-                                {% if issue.github_assignee_login %}
-                                {{ issue.github_assignee_login }}
-                                <a href="{{issue.github_assignee_url_profile}}"><i class="far fa-user"></i></a>
-                                {% else %}
-                                None
-                                {% endif %}
+                    <div class="color-based-on-deadline {% if issue.is_out_of_date %} red-issue {% endif %}">
+                        <div class="row issue">
+                            <div class="col-md-6">
+                                <h5>
+                                    {% if 'bug' in issue.label %}
+                                    <i class="fas fa-bug"></i>
+                                    {% endif %}
+                                    {% if 'enhancement' in issue.label %}
+                                    <i class="fas fa-arrow-up"></i>
+                                    {% endif %}
+                                    {% if 'help wanted' in issue.label %}
+                                    <i class="fas fa-question"></i>
+                                    {% endif %}
+                                    {{ issue.github_title}}
+                                </h5>
+                                <p class="issue-body">
+                                    {{ issue.github_body}}
+                                </p>
                             </div>
-                            <div>Comments: {{ issue.github_comments_number }}</div>
-                            <div>Deadline: <b> {{ issue.deadline }} </b> </div>
-                        </div>
-                        <div class="col-md-2">
-                            <button type="submit" class="btn btn-2"><a href="{{ issue.github_html_url }}">Go to
-                                issue</a></button>
-                            <button type="submit" class="btn btn-2"><a href="{{ issue.github_html_url }}">Edit</a></button>
-                            <button type="submit" class="btn btn-6"><a href="{{ issue.github_html_url }}">CLOSE</a></button>
-                        </div>
 
+                            <div class="col-md-4">
+                                <div>Priority: <b>{{ issue.priority }}</b></div>
+                                <div>Last updated: {{ issue.github_updated_at }}</div>
+                                <div>Assignee: {{ issue.github_updated_at }}
+                                    {% if issue.github_assignee_login %}
+                                    {{ issue.github_assignee_login }}
+                                    <a href="{{issue.github_assignee_url_profile}}"><i class="far fa-user"></i></a>
+                                    {% else %}
+                                    None
+                                    {% endif %}
+                                </div>
+                                <div>Comments: {{ issue.github_comments_number }}</div>
+                                <div>Deadline: <b> {{ issue.deadline }} </b></div>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-2"><a href="{{ issue.github_html_url }}">Go to
+                                    issue</a></button>
+                                <button type="submit" class="btn btn-2"><a
+                                        href="{% url 'issues:issues_update_form' issue.pk %}">Edit</a></button>
+                                <button type="submit" class="btn btn-6"><a href="{% url 'issues:issues_close' issue.pk %}">CLOSE</a>
+                                </button>
+                            </div>
+
+                        </div>
                     </div>
                 </li>
                 {% endfor %}
